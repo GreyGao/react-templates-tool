@@ -2,13 +2,16 @@
 const yargs = require('yargs')
 const path = require('path')
 const files = require('./lib/files')
+const command = require('./command/command')
+
+// console.log(__dirname)
 
 const argv = yargs
   .command('create', 'Create A Project Template', {
     type: {
       demand: true,
       alias: 't',
-      describe: 'Template types: eg: react-native / react-single/ react-multiple '
+      describe: 'Template types: eg: react-native / react-single-page/ react-multiple-pages '
     },
     projectName: {
       default: 'project-template',
@@ -19,24 +22,15 @@ const argv = yargs
   .help()
   .argv
 
-const command = argv._[0]
-console.log('Command: ', command)
-console.log('Yargs', argv)
+const commandArgv = argv._[0]
+// console.log('Command: ', commandArgv)
+// console.log('Yargs', argv)
 
-if (command === 'create') {
-  const type = argv.type;
-  const projectName = argv.projectName;
-  // const currentPath = files.getCurrentDirectoryBase();
-
-  // console.log(currentPath)
-
-  // 1. clone the latest version templates to local path : /templates
-
-  // 2. copy dirs to command execute path
-  const filePath = `${__dirname}/templates/${type}/`;
-  files.makeCopy(filePath, projectName)
-
-  // 3. clear templates folder
+if (commandArgv === 'create') {
+  const { type, projectName } = argv;
+  // some description ...
+  console.log('project is constructing...')
+  command.create(type, projectName)
 }
 
 
