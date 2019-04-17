@@ -1,24 +1,14 @@
 #!/usr/bin/env node
 const yargs = require('yargs')
+const inquirer = require('inquirer')
 const path = require('path')
-const files = require('./lib/files')
 const command = require('./command/command')
+const questions = require('./command/questions')
 
-// console.log(__dirname)
+console.log('welcome to react-templates-tool~~~\u{01F923}\u{01F923}\u{01F923}')
 
 const argv = yargs
-  .command('create', 'Create A Project Template', {
-    type: {
-      demand: true,
-      alias: 't',
-      describe: 'Template types: eg: react-native / react-single-page/ react-multiple-pages '
-    },
-    projectName: {
-      default: 'project-template',
-      alias: 'p',
-      describe: 'Project Name'
-    }
-  })
+  .command('create', 'Create A Project Template')
   .help()
   .argv
 
@@ -27,10 +17,17 @@ const commandArgv = argv._[0]
 // console.log('Yargs', argv)
 
 if (commandArgv === 'create') {
-  const { type, projectName } = argv;
-  // some description ...
-  console.log('project is constructing...')
-  command.create(type, projectName)
+  console.log('----type your basic project info----')
+  inquirer
+    .prompt(questions.create)
+    .then(answers => {
+      // console.log(JSON.stringify(answers, null, ' '))
+      console.log('project is constructing...')
+
+      const { type, projectName } = answers;
+      command.create(type, projectName)
+
+    })
 }
 
 
