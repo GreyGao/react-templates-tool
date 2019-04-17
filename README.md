@@ -8,5 +8,4 @@ A simple node cli tool to create react/react-native/react-multiple-pages. 前端
 4. 实现更多个性化定制
 
 
-
-![example-1](/Users/greygao/Desktop/self/node/bs-cli/assets/example-1.png)
+![example-1](./assets/example-1.png)
