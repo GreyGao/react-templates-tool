@@ -9,7 +9,7 @@
   "author": "GreyGao",
   "license": "ISC",
   "bin": {
-    "cli": "./index.js"
+    "simple-cli": "./index.js"
   },
   "dependencies": {
     "copy-dir": "^0.4.0",
